@@ -18,12 +18,14 @@ class ApplicationScala @Inject()(mailer: MailerClient, environment:Environment) 
     val cid = "1234"
     val email = Email(
       "Simple email",
-      "Mister FROM <from@email.com>",
-      Seq("Miss TO <to@email.com"),
+      "Mister FROM <cssainz77@gmail.com>",
+      Seq("Miss TO <carlos.sainz@globalsign.com>"),
+      // Adds attachment
       attachments = Seq(
         AttachmentFile("favicon.png", new File(environment.classLoader.getResource("public/images/favicon.png").getPath), contentId = Some(cid)),
         AttachmentData("data.txt", "data".getBytes, "text/plain", Some("Simple data"), Some(EmailAttachment.INLINE))
       ),
+      // Sends text, HTML or both ...
       bodyText = Some("A text message"),
       bodyHtml = Some(s"""<html><body><p>An <b>html</b> message with cid <img src="cid:$cid"></p></body></html>""")
     )
